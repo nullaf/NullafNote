@@ -13,7 +13,7 @@ import Note from "./Components/Note";
 
 function App() {
 
-  const [loginState, setLoginState] = useState(1);
+  const [loginState, setLoginState] = useState(0);
   const [usernameState, setUsernameState] = useState("");
 
   const keyPress = (event) => {
