@@ -7,8 +7,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import EditIcon from "@material-ui/icons/Edit";
-import IconButton from "@material-ui/core/IconButton";
+import AddIcon from '@material-ui/icons/Add';
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 function Note() {
   const [headerState, setHeader] = useState(0);
@@ -37,43 +37,12 @@ function Note() {
 
   return (
     <div className="Note">
-
-        <div className="addPart">
-          <Grid
-            container
-            direction="column"
-            justify="flex-start"
-            alignItems="flex-start"
-          >
-            <Button
-              onClick={addHeader}
-              variant="contained"
-              color="primary"
-              className="addNoteButton"
-              fullWidth
-            >
-              Add Note
-            </Button>
-            <div className="textFieldPart">
-              {headers.map((note) => (
-                <NoteText
-                  mainMessage = {note.mainMessage}
-                  message={note.message}
-                  id={note.id}
-                  delete={(id) => deleteNote(id)}
-                />
-              ))}
-            </div>
-          </Grid>
-        </div>
         <div className="rightPart">
           <div className="header">
             {headerState ? (
+                <ClickAwayListener onClickAway={() => {if(headerText != "") {setHeader(0)}}}>
               <TextField
                 onClick={() => {
-                  if (headerText !== "") {
-                    setHeader(0);
-                  }
                 }}
                 variant="outlined"
                 fullWidth
@@ -88,18 +57,12 @@ function Note() {
                 }}
                 autoFocus
               />
+                </ClickAwayListener>
             ) : (
                 <div className="rightHeader">
 
-
-                <IconButton onClick={() => {
-                  setHeader(1);
-                }}>
-                  <EditIcon fontSize="large"/>
-                </IconButton>
-
                 <Typography
-
+                  onClick={() => setHeader(1)}
                   variant="h3"
                 >
                   {headerText}
@@ -114,7 +77,38 @@ function Note() {
               value={text}
             />
           </div>
+          <div className="addNoteButton">
+          <Button
+              onClick={addHeader}
+              variant="contained"
+              color="primary"
+              startIcon={<AddIcon />}
+
+          >
+            Add Note
+          </Button>
+          </div>
         </div>
+
+      <div className="addPart">
+        <Grid
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="flex-start"
+        >
+          <div className="textFieldPart">
+            {headers.map((note) => (
+                <NoteText
+                    mainMessage = {note.mainMessage}
+                    message={note.message}
+                    id={note.id}
+                    delete={(id) => deleteNote(id)}
+                />
+            ))}
+          </div>
+        </Grid>
+      </div>
 
     </div>
   );

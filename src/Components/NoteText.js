@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Note.scss";
 import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -13,13 +13,19 @@ import Fade from "@material-ui/core/Fade";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import TextField from "@material-ui/core/TextField";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 function NoteText(props) {
-  const [headerState, setHeader] = useState(0);
+  const [header, setHeaderState] = useState(0);
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
-  const [headerText, setHeaderText] = useState(props.message);
-  const [text, setText] = useState(props.mainMessage);
+  const [headerTextMain, setHeaderTextMain] = useState(props.message);
+  const [mainText, setMainText] = useState(props.mainMessage);
+
+  useEffect(() => {
+    setMainText(props.mainMessage);
+    setHeaderTextMain(props.message);
+  }, [props.message, props.mainMessage]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -48,7 +54,7 @@ function NoteText(props) {
         >
           <div className="noteTextPart">
             <Typography variant="h6" border={1}>
-              {headerText}{" "}
+              {headerTextMain}{" "}
             </Typography>
           </div>
           <div className="divIcons">
@@ -80,10 +86,10 @@ function NoteText(props) {
             <Fade in={open}>
               <div className="messageBodyStyle">
                 <Typography variant="h4" id="simple-modal-title">
-                  {headerText}
+                  {headerTextMain}
                 </Typography>
                 <Typography variant="body1" id="simple-modal-description">
-                  {parse(text)}
+                  {parse(mainText)}
                 </Typography>
               </div>
             </Fade>
@@ -102,49 +108,52 @@ function NoteText(props) {
           >
             <Fade in={openEdit}>
               <div className="messageBodyStyle">
-                {headerState ? (
-                  <TextField
-                    onClick={() => {
-                      if (headerText !== "") {
-                        setHeader(0);
-                      }
-                    }}
-                    variant="outlined"
-                    fullWidth
-                    value={headerText}
-                    onChange={(e) => {
-                      if (headerText.length < 30) {
-                        setHeaderText(e.target.value);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.keyCode === 13) {
-                        if (headerText !== "") {
-                          setHeader(0);
+                {header ? (
+                    <ClickAwayListener onClickAway={() => {if(headerTextMain != "") {setHeaderState(0)}}}>
+                    <TextField
+                      onClick={() => {
+
+                      }}
+                      variant="outlined"
+                      fullWidth
+                      value={headerTextMain}
+                      onChange={(e) => {
+                        if (headerTextMain.length < 30) {
+                          setHeaderTextMain(e.target.value);
                         }
-                      }
-                    }}
-                    autoFocus
-                  />
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.keyCode === 13) {
+                          if (headerTextMain !== "") {
+                            setHeaderState(0);
+                          }
+                        }
+                      }}
+                      autoFocus
+                    />
+                  </ClickAwayListener>
                 ) : (
                   <div className="rightHeader">
-                    <IconButton
+                    <Typography
+                      variant="h3"
                       onClick={() => {
-                        setHeader(1);
+                        setHeaderState(1);
                       }}
                     >
-                      <EditIcon fontSize="large" />
-                    </IconButton>
-
-                    <Typography variant="h3">{headerText}</Typography>
+                      {headerTextMain}
+                    </Typography>
                   </div>
                 )}
-                <ReactQuill theme="snow" onChange={setText} value={text} />
+                <ReactQuill
+                  theme="snow"
+                  onChange={setMainText}
+                  value={mainText}
+                />
               </div>
             </Fade>
           </Modal>
         </Grid>
-        <div>{parse(text)}</div>
+        <div>{parse(mainText)}</div>
       </div>
     </div>
   );

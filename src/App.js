@@ -13,7 +13,7 @@ import Note from "./Components/Note";
 
 function App() {
 
-  const [loginState, setLoginState] = useState(0);
+  const [loginState, setLoginState] = useState(1);
   const [usernameState, setUsernameState] = useState("");
 
   const keyPress = (event) => {
@@ -46,7 +46,7 @@ function App() {
         <Helmet>
           <style>{"body {background-color: #eaeaea;"}</style>
         </Helmet>
-        <Button variant="contained" className="SignOutButton" onClick={() => {setLoginState(0)}}>Sign Out</Button>
+        <Button variant="contained" color="primary" className="SignOutButton" onClick={() => {setLoginState(0)}}>Sign Out</Button>
         <Note/>
       </div>
     );
