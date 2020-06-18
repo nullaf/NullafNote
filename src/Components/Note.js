@@ -8,20 +8,34 @@ import "react-quill/dist/quill.snow.css";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from '@material-ui/icons/Add';
+import parse from "html-react-parser";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Quill from "quill";
 
 function Note() {
+
   const [headerState, setHeader] = useState(0);
   const [headerText, setHeaderText] = useState("Header");
   const [headers, setHeaders] = useState([]);
   const [text, setText] = useState("");
   const [count, setCount] = useState(0);
 
+  const Link = Quill.import('formats/link');
+  Link.sanitize = function(url) {
+    if(url.search("http") === -1) {
+      url = "https:" + url;
+      return url
+    }
+    return url
 
+  }
 
 
   const addHeader = () => {
-    if(text !== "") {
+    if(text === "") {
+
+    }
+    else if(text !== "" && (typeof parse(text).props.children === "string" || typeof parse(text).props.children.props.children === "string")) {
       setHeaders([{id: count + 1, message: headerText, mainMessage: text}, ...headers]);
       setCount(count + 1);
       setHeaderText("Header")
@@ -40,14 +54,15 @@ function Note() {
         <div className="rightPart">
           <div className="header">
             {headerState ? (
-                <ClickAwayListener onClickAway={() => {if(headerText != "") {setHeader(0)}}}>
+                <ClickAwayListener onClickAway={() => {if(headerText !== "") {setHeader(0)}}}>
               <TextField
                 onClick={() => {
                 }}
                 variant="outlined"
+                color="secondary"
                 fullWidth
                 value={headerText}
-                onChange={(e) => {if(headerText.length < 30) {setHeaderText(e.target.value)}}}
+                onChange={(e) => {setHeaderText(e.target.value)}}
                 onKeyDown={(e) => {
                   if (e.keyCode === 13) {
                     if (headerText !== "") {
@@ -81,7 +96,7 @@ function Note() {
           <Button
               onClick={addHeader}
               variant="contained"
-              color="primary"
+              color="secondary"
               startIcon={<AddIcon />}
 
           >

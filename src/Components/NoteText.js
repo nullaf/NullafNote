@@ -59,17 +59,17 @@ function NoteText(props) {
           </div>
           <div className="divIcons">
             <IconButton onClick={handleOpenEdit}>
-              <EditIcon color="primary" />
+              <EditIcon color="secondary" />
             </IconButton>
             <IconButton onClick={handleOpen}>
-              <ZoomOutMapIcon color="primary" />
+              <ZoomOutMapIcon color="secondary" />
             </IconButton>
             <IconButton
               onClick={() => {
                 props.delete(props.id);
               }}
             >
-              <DeleteIcon color="primary" />
+              <DeleteIcon color="secondary" />
             </IconButton>
           </div>
           <Modal
@@ -107,14 +107,15 @@ function NoteText(props) {
             }}
           >
             <Fade in={openEdit}>
-              <div className="messageBodyStyle">
+              <div className="messageBodyStyle" >
                 {header ? (
-                    <ClickAwayListener onClickAway={() => {if(headerTextMain != "") {setHeaderState(0)}}}>
+                    <ClickAwayListener onClickAway={() => {if(headerTextMain !== "") {setHeaderState(0)}}}>
                     <TextField
                       onClick={() => {
 
                       }}
                       variant="outlined"
+                      color="secondary"
                       fullWidth
                       value={headerTextMain}
                       onChange={(e) => {
