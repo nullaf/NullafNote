@@ -1,0 +1,55 @@
+.App {
+  height: 100vh;
+}
+html,
+body,
+#app,
+#app > div {
+  height: 100vh;
+}
+.Login {
+  height: 100vh;
+  background-image: radial-gradient(
+    circle at top left,
+    rgb(195, 195, 195) 0%,
+    rgb(195, 195, 195) 2%,
+    rgb(202, 202, 202) 2%,
+    rgb(202, 202, 202) 23%,
+    rgb(209, 209, 209) 23%,
+    rgb(209, 209, 209) 55%,
+    rgb(217, 217, 217) 55%,
+    rgb(217, 217, 217) 80%,
+    rgb(224, 224, 224) 80%,
+    rgb(224, 224, 224) 86%,
+    rgb(231, 231, 231) 86%,
+    rgb(231, 231, 231) 96%,
+    rgb(238, 238, 238) 96%,
+    rgb(238, 238, 238) 100%
+  );
+}
+.LoginPart {
+  min-height: 250px;
+  min-width: 250px;
+  height: 45vh;
+  width: 40vw;
+  position: absolute;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #eaeaea;
+  padding: 5vh 5vw;
+  border-style: solid;
+  border-color: #252a34;
+}
+.SignOutButton {
+  margin: 0 auto;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  height: 40px;
+  opacity: 0.9;
+}
