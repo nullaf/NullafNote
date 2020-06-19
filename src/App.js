@@ -33,10 +33,14 @@ function App() {
         );
       setLoginState(1);
     } catch (error) {
+        try {
       const user = await app
         .auth()
         .signInWithEmailAndPassword(usernameState + "@notenfapp.com", "123456");
-      setLoginState(1);
+      setLoginState(1); }
+      catch (err) {
+            alert(err)
+      }
     }
   };
 
