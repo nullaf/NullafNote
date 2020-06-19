@@ -32,15 +32,10 @@ function Note() {
 
 
   const addHeader = () => {
-    if(text === "") {
-
-    }
-    else if(text !== "" && (typeof parse(text).props.children === "string" || typeof parse(text).props.children.props.children === "string")) {
       setHeaders([{id: count + 1, message: headerText, mainMessage: text}, ...headers]);
       setCount(count + 1);
       setHeaderText("Header")
       setText("")
-    }
   };
 
   const deleteNote = (id) => {
