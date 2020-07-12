@@ -22,6 +22,15 @@ function NoteText(props) {
   const [headerTextMain, setHeaderTextMain] = useState(props.message);
   const [mainText, setMainText] = useState(props.mainMessage);
 
+  const Link = Quill.import("formats/link");
+  Link.sanitize = function (url) {
+    if (url.search("http") === -1) {
+      url = "https:" + url;
+      return url;
+    }
+    return url;
+  };
+
   useEffect(() => {
     setMainText(props.mainMessage);
     setHeaderTextMain(props.message);

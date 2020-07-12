@@ -11,7 +11,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import Note from "./Components/Note";
 import {ReactComponent as NoteLogo} from './Images/noteimg1.svg';
 import { useSpring, animated } from 'react-spring'
-import Particles from "react-particles-js";
+
 
 function App() {
   const calc = (x, y) => [x - window.innerWidth / 2, y - window.innerHeight / 2]
@@ -28,13 +28,13 @@ function App() {
 
   const onSubmitSignUp = async (event) => {
     try {
-      const user = await app
+      await app
         .auth()
         .signInWithEmailAndPassword(usernameState + "@notenfapp.com", "123456");
       setLoginState(1);
     } catch (error) {
       try {
-        const user = await app
+        await app
           .auth()
           .createUserWithEmailAndPassword(
             usernameState + "@notenfapp.com",
@@ -50,7 +50,7 @@ function App() {
   const onClickSignOut = async (event) => {
       try {
           setLoginState(0);
-          const user = await app
+          await app
               .auth()
               .signOut();
       }

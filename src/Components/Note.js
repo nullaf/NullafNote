@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import { firestore } from "./firebase";
+
 
 function Note() {
   const [headerState, setHeader] = useState(0);
