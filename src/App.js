@@ -83,6 +83,9 @@ function App() {
         <Helmet>
           <style>{"body {background-color: #1d1e22;"}</style>
         </Helmet>
+          <div className="container" onMouseMove={({clientX: x, clientY: y}) => set({xy: calc(x, y)})}>
+              <animated.div className="card1" style={{transform: props.xy.interpolate(trans1)}}/>
+          </div>
 
 
         <div className="LoginPart">
@@ -98,9 +101,9 @@ function App() {
           >
 
             <Typography
-              style={{ marginTop: "0.2em" }}
               color="secondary"
               variant="h3"
+              className="welcomeText"
             >
               Welcome
             </Typography>
@@ -142,9 +145,7 @@ function App() {
 
         </div>
 
-          <div className="container" onMouseMove={({clientX: x, clientY: y}) => set({xy: calc(x, y)})}>
-              <animated.div className="card1" style={{transform: props.xy.interpolate(trans1)}}/>
-          </div>
+
 
       </div>
     );

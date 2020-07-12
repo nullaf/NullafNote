@@ -12,7 +12,7 @@ body,
   background-image: radial-gradient(circle at top left, rgb(195, 195, 195) 0%, rgb(195, 195, 195) 2%,rgb(245,0,87) 2%, rgb(245,0,87) 23%,rgb(209, 209, 209) 23%, rgb(209, 209, 209) 55%,rgb(217, 217, 217) 55%, rgb(217, 217, 217) 80%,rgb(245,0,87) 80%, rgb(245,0,87) 86%,rgb(231, 231, 231) 86%, rgb(231, 231, 231) 96%,rgb(245,0,87) 96%, rgb(245,0,87) 100%);
 }
 .LoginPart {
-  min-height: 400px;
+  min-height: 350px;
   min-width: 250px;
   height: 65vh;
   width: 40vw;
@@ -25,10 +25,20 @@ body,
   bottom: 0;
   right: 0;
   background: #eaeaea;
-  padding: 5vh 5vw;
-  border-style: solid;
-  border-color: gray;
+  padding: 4vh 4vw;
+  border-radius: 20px;
+    box-shadow:
+            0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+            0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+            0 12.5px 10px rgba(0, 0, 0, 0.06),
+            0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+            0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+            0 100px 80px rgba(0, 0, 0, 0.12)
+;
 }
+
+
+
 .SignOutButton {
   margin: 0 auto;
   position: fixed !important;
@@ -61,11 +71,25 @@ body,
     will-change: transform;
 }
 @media (max-width: 1000px) {
+    .LoginPart {
+        height: 55vh;
+        transition: all 400ms ease-out;
+    }
+     .noteLogo1 {
+         height: 20vh;
+         transition: all 400ms ease-out;
 
+     }
     .card1 {
-        top: 5vh
+
 
     }
+    .welcomeText {
+        font-size: 40px !important;
+        transition: font-size 400ms ease-out;
 
+
+    }
 }
+
 
