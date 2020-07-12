@@ -9,11 +9,12 @@ body,
 }
 .Login {
   height: 100vh;
-  background-image: radial-gradient(circle at top left, rgb(195, 195, 195) 0%, rgb(195, 195, 195) 2%,rgb(245,0,87) 2%, rgb(245,0,87) 23%,rgb(209, 209, 209) 23%, rgb(209, 209, 209) 55%,rgb(217, 217, 217) 55%, rgb(217, 217, 217) 80%,rgb(245,0,87) 80%, rgb(245,0,87) 86%,rgb(231, 231, 231) 86%, rgb(231, 231, 231) 96%,rgb(245,0,87) 96%, rgb(245,0,87) 100%);
+    background-image: radial-gradient(circle at top left, rgb(245,0,87) 0%, rgb(245,0,87) 2%,rgb(202, 202, 202) 2%, rgb(202, 202, 202) 23%,rgb(245,0,87) 23%, rgb(245,0,87) 55%,rgb(217, 217, 217) 55%, rgb(217, 217, 217) 80%,rgb(245,0,87) 80%, rgb(245,0,87) 86%,rgb(231, 231, 231) 86%, rgb(231, 231, 231) 96%,rgb(245,0,87) 96%, rgb(245,0,87) 100%);
 }
 .LoginPart {
   min-height: 350px;
   min-width: 250px;
+  max-height: 750px;
   height: 65vh;
   width: 40vw;
   position: absolute;
@@ -52,18 +53,18 @@ body,
     height: 25vh;
     min-width: 200px;
     min-height: 125px;
+    max-height: 500px;
+    max-height: 360px;
 }
 
 .card1 {
     right: 5vw;
     bottom: 5vh;
     position: absolute;
-    min-width: 30ch;
-    min-height: 30ch;
-    width: 25vw;
-    height: 25vw;
-    max-width: 50ch;
-    max-height: 50ch;
+    min-width: 25ch;
+    min-height: 25ch;
+    width: 28vw;
+    height: 28vw;
     background-image: url("./Images/noteimg2.svg");
     background-size: cover;
     background-position: center center;
@@ -75,15 +76,13 @@ body,
         height: 55vh;
         transition: all 400ms ease-out;
     }
+
      .noteLogo1 {
          height: 20vh;
          transition: all 400ms ease-out;
 
      }
-    .card1 {
 
-
-    }
     .welcomeText {
         font-size: 40px !important;
         transition: font-size 400ms ease-out;
@@ -91,5 +90,10 @@ body,
 
     }
 }
+@media (max-width: 600px) {
+    .card1 {
+        display: none;
 
+    }
+}
 
