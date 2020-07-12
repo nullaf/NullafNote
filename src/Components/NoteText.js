@@ -3,13 +3,13 @@ import "./Note.scss";
 import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
-import Grid from "@material-ui/core/Grid";
 import parse from "html-react-parser";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
 import Modal from "@material-ui/core/Modal";
 import EditIcon from "@material-ui/icons/Edit";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import Quill from "quill";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import TextField from "@material-ui/core/TextField";
@@ -46,12 +46,8 @@ function NoteText(props) {
   return (
     <div className="NoteText">
       <div className="NoteTextGrid">
-        <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center"
-        >
+        <div className="iconsAndText">
+
           <div className="noteTextPart">
             <Typography variant="h6" border={1}>
               {headerTextMain}
@@ -72,6 +68,8 @@ function NoteText(props) {
               <DeleteIcon color="secondary" />
             </IconButton>
           </div>
+        </div>
+
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
@@ -138,12 +136,12 @@ function NoteText(props) {
                     />
                   </ClickAwayListener>
                 ) : (
-                  <div className="rightHeader">
+                  <div className="rightHeader" onClick={() => {
+                    setHeaderState(1);
+                  }}>
                     <Typography
                       variant="h3"
-                      onClick={() => {
-                        setHeaderState(1);
-                      }}
+
                     >
                       {headerTextMain}
                     </Typography>
@@ -157,7 +155,7 @@ function NoteText(props) {
               </div>
             </Fade>
           </Modal>
-        </Grid>
+
         <div>{parse(mainText)}</div>
       </div>
     </div>

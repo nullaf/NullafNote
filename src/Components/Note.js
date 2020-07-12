@@ -3,13 +3,13 @@ import "./Note.scss";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import NoteText from "./NoteText";
+import Quill from "quill";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Quill from "quill";
 import { firestore } from "./firebase";
 
 function Note() {
@@ -29,9 +29,7 @@ function Note() {
   };
 
   useEffect(() => {
-    async function fetchData() {
-     
-    }
+    async function fetchData() {}
     fetchData();
   }, []);
 
@@ -81,8 +79,8 @@ function Note() {
               />
             </ClickAwayListener>
           ) : (
-            <div className="rightHeader">
-              <Typography onClick={() => setHeader(1)} variant="h3">
+            <div onClick={() => setHeader(1)} className="rightHeader">
+              <Typography variant="h3">
                 {headerText}
               </Typography>
             </div>

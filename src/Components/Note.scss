@@ -86,6 +86,7 @@ a:hover { text-decoration: none; color:#000; }
   border-top: #252a34 solid;
   margin-top: 2vh;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+
 }
 .NoteText {
   word-wrap: break-word;
@@ -94,7 +95,7 @@ a:hover { text-decoration: none; color:#000; }
 }
 .noteTextPart {
   word-wrap: break-word;
-  max-width: 12.5vw;
+  max-width: 12vw;
 }
 .messageBodyStyle {
   word-wrap: break-word;
@@ -114,5 +115,14 @@ a:hover { text-decoration: none; color:#000; }
   display: flex;
   max-width: 49vw;
   overflow: hidden;
+}
+.divIcons {
+    top: 0;
+    margin-top: 0;
+}
+.iconsAndText {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 

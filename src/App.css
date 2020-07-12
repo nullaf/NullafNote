@@ -37,21 +37,35 @@ body,
   height: 40px;
 }
 .noteLogo1 {
-
-  margin: auto;
-  width: 30vw;
-  height: 25vh;
-  min-width: 200px;
-  min-height: 125px;
+    margin: auto;
+    width: 30vw;
+    height: 25vh;
+    min-width: 200px;
+    min-height: 125px;
 }
-.noteLogo2 {
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  width: 40vw;
-  height: 40vh;
-  min-width: 170px;
-  min-height: 220px;
-  margin: auto;
+
+.card1 {
+    right: 5vw;
+    bottom: 5vh;
+    position: absolute;
+    min-width: 30ch;
+    min-height: 30ch;
+    width: 25vw;
+    height: 25vw;
+    max-width: 50ch;
+    max-height: 50ch;
+    background-image: url("./Images/noteimg2.svg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    will-change: transform;
+}
+@media (max-width: 1000px) {
+
+    .card1 {
+        top: 5vh
+
+    }
+
 }
 
