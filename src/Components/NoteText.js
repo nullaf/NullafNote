@@ -54,7 +54,7 @@ function NoteText(props) {
         >
           <div className="noteTextPart">
             <Typography variant="h6" border={1}>
-              {headerTextMain}{" "}
+              {headerTextMain}
             </Typography>
           </div>
           <div className="divIcons">
@@ -107,13 +107,17 @@ function NoteText(props) {
             }}
           >
             <Fade in={openEdit}>
-              <div className="messageBodyStyle" >
+              <div className="messageBodyStyle">
                 {header ? (
-                    <ClickAwayListener onClickAway={() => {if(headerTextMain !== "") {setHeaderState(0)}}}>
+                  <ClickAwayListener
+                    onClickAway={() => {
+                      if (headerTextMain !== "") {
+                        setHeaderState(0);
+                      }
+                    }}
+                  >
                     <TextField
-                      onClick={() => {
-
-                      }}
+                      onClick={() => {}}
                       variant="outlined"
                       color="secondary"
                       fullWidth

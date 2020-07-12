@@ -9,28 +9,12 @@ body,
 }
 .Login {
   height: 100vh;
-  background-image: radial-gradient(
-    circle at top left,
-    rgb(195, 195, 195) 0%,
-    rgb(195, 195, 195) 2%,
-    rgb(202, 202, 202) 2%,
-    rgb(202, 202, 202) 23%,
-    rgb(209, 209, 209) 23%,
-    rgb(209, 209, 209) 55%,
-    rgb(217, 217, 217) 55%,
-    rgb(217, 217, 217) 80%,
-    rgb(224, 224, 224) 80%,
-    rgb(224, 224, 224) 86%,
-    rgb(231, 231, 231) 86%,
-    rgb(231, 231, 231) 96%,
-    rgb(238, 238, 238) 96%,
-    rgb(238, 238, 238) 100%
-  );
+  background-image: radial-gradient(circle at top left, rgb(195, 195, 195) 0%, rgb(195, 195, 195) 2%,rgb(245,0,87) 2%, rgb(245,0,87) 23%,rgb(209, 209, 209) 23%, rgb(209, 209, 209) 55%,rgb(217, 217, 217) 55%, rgb(217, 217, 217) 80%,rgb(245,0,87) 80%, rgb(245,0,87) 86%,rgb(231, 231, 231) 86%, rgb(231, 231, 231) 96%,rgb(245,0,87) 96%, rgb(245,0,87) 100%);
 }
 .LoginPart {
-  min-height: 250px;
+  min-height: 400px;
   min-width: 250px;
-  height: 45vh;
+  height: 65vh;
   width: 40vw;
   position: absolute;
   justify-content: center;
@@ -43,7 +27,7 @@ body,
   background: #eaeaea;
   padding: 5vh 5vw;
   border-style: solid;
-  border-color: #252a34;
+  border-color: gray;
 }
 .SignOutButton {
   margin: 0 auto;
@@ -52,3 +36,22 @@ body,
   right: 0;
   height: 40px;
 }
+.noteLogo1 {
+
+  margin: auto;
+  width: 30vw;
+  height: 25vh;
+  min-width: 200px;
+  min-height: 125px;
+}
+.noteLogo2 {
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  width: 40vw;
+  height: 40vh;
+  min-width: 170px;
+  min-height: 220px;
+  margin: auto;
+}
+

@@ -9,10 +9,10 @@ import Grid from "@material-ui/core/Grid";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Note from "./Components/Note";
-
+import {ReactComponent as NoteLogo} from './Images/noteimg1.svg';
+import {ReactComponent as NoteLogo2} from './Images/noteimg2.svg';
 
 function App() {
-
   const [loginState, setLoginState] = useState(0);
   const [usernameState, setUsernameState] = useState("");
 
@@ -23,26 +23,37 @@ function App() {
   };
 
   const onSubmitSignUp = async (event) => {
-
     try {
       const user = await app
         .auth()
-        .createUserWithEmailAndPassword(
-          usernameState + "@notenfapp.com",
-          "123456"
-        );
+        .signInWithEmailAndPassword(usernameState + "@notenfapp.com", "123456");
       setLoginState(1);
     } catch (error) {
-        try {
-      const user = await app
-        .auth()
-        .signInWithEmailAndPassword(usernameState + "@notenfapp.com", "123456");
-      setLoginState(1); }
-      catch (err) {
-            alert(err)
+      try {
+        const user = await app
+          .auth()
+          .createUserWithEmailAndPassword(
+            usernameState + "@notenfapp.com",
+            "123456"
+          );
+        setLoginState(1);
+      } catch (err) {
+        alert(err);
       }
     }
   };
+
+  const onClickSignOut = async (event) => {
+      try {
+          setLoginState(0);
+          const user = await app
+              .auth()
+              .signOut();
+      }
+      catch(e) {
+          alert(e)
+      }
+  }
 
   if (loginState) {
     return (
@@ -50,8 +61,16 @@ function App() {
         <Helmet>
           <style>{"body {background-color: #eaeaea;"}</style>
         </Helmet>
-        <Button variant="contained" color="secondary" className="SignOutButton" onClick={() => {setLoginState(0)}}>Sign Out</Button>
-        <Note/>
+        <Button
+          variant="contained"
+          color="secondary"
+          className="SignOutButton"
+          onClick={onClickSignOut}
+
+        >
+          Sign Out
+        </Button>
+        <Note />
       </div>
     );
   } else {
@@ -60,13 +79,24 @@ function App() {
         <Helmet>
           <style>{"body {background-color: #1d1e22;"}</style>
         </Helmet>
+
+
+
+
+
+
         <div className="LoginPart">
+            <div>
+                <NoteLogo className="noteLogo1"/>
+            </div>
+
           <Grid
             container
             direction="column"
             justify="center"
             alignItems="center"
           >
+
             <Typography
               style={{ marginTop: "0.2em" }}
               color="secondary"
@@ -74,6 +104,7 @@ function App() {
             >
               Welcome
             </Typography>
+
 
             <TextField
               color="secondary"
@@ -108,7 +139,10 @@ function App() {
               Sign In
             </Button>
           </Grid>
+
         </div>
+
+          <NoteLogo2 className="noteLogo2"/>
       </div>
     );
   }
