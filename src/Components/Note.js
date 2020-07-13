@@ -28,10 +28,10 @@ function Note() {
     return url;
   };
 
+
   useEffect(() => {
-    async function fetchData() {}
-    fetchData();
-  }, []);
+    setText("")
+  }, [headers]);
 
   const addHeader = () => {
     setHeaders([
@@ -40,7 +40,7 @@ function Note() {
     ]);
     setCount(count + 1);
     setHeaderText("Header");
-    setText("");
+    setText("")
   };
 
   const deleteNote = (id) => {
