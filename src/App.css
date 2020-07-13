@@ -1,5 +1,6 @@
 .App {
   height: 100vh;
+
 }
 html,
 body,
@@ -44,6 +45,7 @@ body,
   top: 0;
   right: 0;
   height: 40px;
+
 }
 .noteLogo1 {
     margin: auto;
