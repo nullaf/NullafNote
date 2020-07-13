@@ -37,8 +37,8 @@ function NoteText(props) {
     setEditor(EditorState.createWithContent(contentState))
     setMainText(props.mainMessage);
     setHeaderTextMain(props.message);
-
-  }, [props.message, props.mainMessage], contentState);
+  // eslint-disable-next-line
+  }, [props.message, props.mainMessage]);
 
 
 
@@ -162,7 +162,7 @@ function NoteText(props) {
                     </Typography>
                   </div>
                 )}
-                <div className="quill">
+                <div className="editQuill">
                   <Editor
                       wrapperClassName="demo-wrapper"
                       editorClassName="demo-editor"

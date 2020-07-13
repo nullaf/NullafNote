@@ -106,6 +106,7 @@ function Note() {
             onClick={() => addHeader()}
             variant="contained"
             color="secondary"
+            fullWidth
             startIcon={<AddIcon />}
           >
             Add Note
