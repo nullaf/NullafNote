@@ -91,7 +91,7 @@ function Note() {
         </div>
         <div className="addNoteButton">
           <Button
-            onClick={addHeader}
+            onClick={() => addHeader()}
             variant="contained"
             color="secondary"
             startIcon={<AddIcon />}
