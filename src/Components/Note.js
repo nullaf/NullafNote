@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Note.scss";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import NoteText from "./NoteText";
-import Quill from "quill";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 function Note() {
@@ -18,22 +19,11 @@ function Note() {
   const [headers, setHeaders] = useState([]);
   const [text, setText] = useState("");
   const [count, setCount] = useState(0);
+  const [editorState,setEditor] = useState(EditorState.createEmpty())
 
-  const Link = Quill.import("formats/link");
-  Link.sanitize = function (url) {
-    if (url.search("http") === -1) {
-      url = "https:" + url;
-      return url;
-    }
-    return url;
-  };
-
-
-  useEffect(() => {
-    setText("")
-  }, [headers]);
 
   const addHeader = () => {
+
     setHeaders([
       { id: count + 1, message: headerText, mainMessage: text },
       ...headers,
@@ -41,15 +31,23 @@ function Note() {
     setCount(count + 1);
     setHeaderText("Header");
     setText("")
+    setEditor(EditorState.createEmpty())
   };
 
   const deleteNote = (id) => {
     setHeaders(headers.filter((note) => note.id !== id));
   };
 
+  const onEditorStateChange = editorState => {
+    setText(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+    return setEditor(editorState)
+  }
+
   return (
     <div className="Note">
+
       <div className="rightPart">
+
         <div className="header">
           {headerState ? (
             <ClickAwayListener
@@ -87,7 +85,21 @@ function Note() {
           )}
         </div>
         <div className="quill">
-          <ReactQuill theme="snow" onChange={setText} value={text} />
+          <Editor
+              wrapperClassName="demo-wrapper"
+              editorClassName="demo-editor"
+              editorState={editorState}
+              onEditorStateChange={onEditorStateChange}
+              toolbar={{
+                options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'link', 'history'],
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+
+              }}
+          />
+
         </div>
         <div className="addNoteButton">
           <Button

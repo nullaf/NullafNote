@@ -9,11 +9,13 @@ import Modal from "@material-ui/core/Modal";
 import EditIcon from "@material-ui/icons/Edit";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import Quill from "quill";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import TextField from "@material-ui/core/TextField";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import { EditorState, convertToRaw , ContentState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import htmlToDraft from 'html-to-draftjs';
 
 function NoteText(props) {
   const [header, setHeaderState] = useState(0);
@@ -22,19 +24,23 @@ function NoteText(props) {
   const [headerTextMain, setHeaderTextMain] = useState(props.message);
   const [mainText, setMainText] = useState(props.mainMessage);
 
-  const Link = Quill.import("formats/link");
-  Link.sanitize = function (url) {
-    if (url.search("http") === -1) {
-      url = "https:" + url;
-      return url;
-    }
-    return url;
-  };
+  const onEditorStateChange = editorState => {
+    setMainText(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+    return setEditor(editorState)
+  }
+  const blocksFromHtml = htmlToDraft(props.mainMessage);
+  const { contentBlocks, entityMap } = blocksFromHtml;
+  const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+  const [editorState,setEditor] = useState(EditorState.createWithContent(contentState));
 
   useEffect(() => {
+    setEditor(EditorState.createWithContent(contentState))
     setMainText(props.mainMessage);
     setHeaderTextMain(props.message);
-  }, [props.message, props.mainMessage]);
+
+  }, [props.message, props.mainMessage], contentState);
+
+
 
   const handleOpen = () => {
     setOpen(true);
@@ -156,11 +162,23 @@ function NoteText(props) {
                     </Typography>
                   </div>
                 )}
-                <ReactQuill
-                  theme="snow"
-                  onChange={setMainText}
-                  value={mainText}
-                />
+                <div className="quill">
+                  <Editor
+                      wrapperClassName="demo-wrapper"
+                      editorClassName="demo-editor"
+                      editorState={editorState}
+                      onEditorStateChange={onEditorStateChange}
+                      toolbar={{
+                        options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'link', 'history'],
+                        inline: { inDropdown: true },
+                        list: { inDropdown: true },
+                        textAlign: { inDropdown: true },
+                        link: { inDropdown: true },
+
+                      }}
+                  />
+
+                </div>
               </div>
             </Fade>
           </Modal>
