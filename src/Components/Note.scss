@@ -53,10 +53,10 @@ a:hover { text-decoration: none; color:#000; }
   overflow: auto;
 }
 .quill {
-  padding: 15px;
-  width: 100%;
+  padding: 10px;
+  width: 100vw;
   background: #fff;
-
+  margin: 0 auto;
   box-shadow:
           0 2.8px 2.2px rgba(0, 0, 0, 0.034),
           0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -81,6 +81,8 @@ a:hover { text-decoration: none; color:#000; }
 ;
 }
 .header {
+  box-sizing: content-box;
+  margin: 0 auto;
   width: 100%;
   word-wrap: break-word;
   background: #eee;
@@ -144,6 +146,7 @@ a:hover { text-decoration: none; color:#000; }
   overflow: auto;
 }
 .rightHeader {
+
   padding: 10px;
   display: flex;
   overflow: hidden;
@@ -215,6 +218,7 @@ a:hover { text-decoration: none; color:#000; }
 
     margin: auto;
     width: 100vw;
+    padding: 10px;
 
   }
   .rightHeader {
