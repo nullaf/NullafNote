@@ -98,9 +98,11 @@ function NoteText(props) {
           >
             <Fade in={open}>
               <div className="messageBodyStyle">
+                <div className="rightHeader">
                 <Typography variant="h4" id="simple-modal-title">
                   {headerTextMain}
                 </Typography>
+                </div>
                 <Typography variant="body1" id="simple-modal-description">
                   {parse(mainText)}
                 </Typography>
