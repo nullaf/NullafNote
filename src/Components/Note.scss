@@ -176,6 +176,10 @@ a:hover { text-decoration: none; color:#000; }
   justify-content: center;
 }
 @media (max-width: 1000px) {
+  .searchbarPart {
+    width: 70vw;
+
+  }
   .noteTextPart {
     max-width: 18vw;
   }
