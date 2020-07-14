@@ -7,11 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import { EditorState, convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
+import { EditorState, convertToRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import SearchIcon from "@material-ui/icons/Search";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 function Note() {
   const [headerState, setHeader] = useState(0);
@@ -19,35 +20,32 @@ function Note() {
   const [headers, setHeaders] = useState([]);
   const [text, setText] = useState("");
   const [count, setCount] = useState(0);
-  const [editorState,setEditor] = useState(EditorState.createEmpty())
-
+  const [editorState, setEditor] = useState(EditorState.createEmpty());
+  const [searchState , setSearchState] = useState("");
 
   const addHeader = () => {
-
     setHeaders([
       { id: count + 1, message: headerText, mainMessage: text },
       ...headers,
     ]);
     setCount(count + 1);
     setHeaderText("Header");
-    setText("")
-    setEditor(EditorState.createEmpty())
+    setText("");
+    setEditor(EditorState.createEmpty());
   };
 
   const deleteNote = (id) => {
     setHeaders(headers.filter((note) => note.id !== id));
   };
 
-  const onEditorStateChange = editorState => {
-    setText(draftToHtml(convertToRaw(editorState.getCurrentContent())))
-    return setEditor(editorState)
-  }
+  const onEditorStateChange = (editorState) => {
+    setText(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+    return setEditor(editorState);
+  };
 
   return (
     <div className="Note">
-
       <div className="rightPart">
-
         <div className="header">
           {headerState ? (
             <ClickAwayListener
@@ -78,28 +76,33 @@ function Note() {
             </ClickAwayListener>
           ) : (
             <div onClick={() => setHeader(1)} className="rightHeader">
-              <Typography variant="h3">
-                {headerText}
-              </Typography>
+              <Typography variant="h3">{headerText}</Typography>
             </div>
           )}
         </div>
         <div className="quill">
           <Editor
-              wrapperClassName="demo-wrapper"
-              editorClassName="demo-editor"
-              editorState={editorState}
-              onEditorStateChange={onEditorStateChange}
-              toolbar={{
-                options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'link', 'history'],
-                inline: { inDropdown: true },
-                list: { inDropdown: true },
-                textAlign: { inDropdown: true },
-                link: { inDropdown: true },
-
-              }}
+            wrapperClassName="demo-wrapper"
+            editorClassName="demo-editor"
+            editorState={editorState}
+            onEditorStateChange={onEditorStateChange}
+            toolbar={{
+              options: [
+                "inline",
+                "blockType",
+                "fontSize",
+                "fontFamily",
+                "list",
+                "textAlign",
+                "link",
+                "history",
+              ],
+              inline: { inDropdown: true },
+              list: { inDropdown: true },
+              textAlign: { inDropdown: true },
+              link: { inDropdown: true },
+            }}
           />
-
         </div>
         <div className="addNoteButton">
           <Button
@@ -121,15 +124,38 @@ function Note() {
           justify="flex-start"
           alignItems="flex-start"
         >
+          <div className="searchbarPart">
+            <TextField
+              variant="outlined"
+              value={searchState}
+              onChange={(e) => {setSearchState(e.target.value)}}
+              color="secondary"
+              label="Search"
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon color="secondary" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
           <div className="textFieldPart">
-            {headers.map((note) => (
+            {searchState === "" ? headers.map((note) => (
               <NoteText
                 mainMessage={note.mainMessage}
                 message={note.message}
                 id={note.id}
                 delete={(id) => deleteNote(id)}
               />
-            ))}
+            )) : headers.map((note) => (note.message.toLowerCase().search(searchState.toLowerCase()) !== -1 || note.mainMessage.toLowerCase().search(searchState.toLowerCase()) !== -1) ?
+                <NoteText
+                    mainMessage={note.mainMessage}
+                    message={note.message}
+                    id={note.id}
+                    delete={(id) => deleteNote(id)}
+                />  : null ) }
           </div>
         </Grid>
       </div>

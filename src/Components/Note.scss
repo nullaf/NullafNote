@@ -82,7 +82,7 @@ a:hover { text-decoration: none; color:#000; }
 .header {
   box-sizing: content-box;
   margin: 0;
-  width: 100vw;
+  width: 100%;
   word-wrap: break-word;
   background: #eee;
   color: #fff;
@@ -104,7 +104,7 @@ a:hover { text-decoration: none; color:#000; }
   max-width: 600px;
   padding: 5px;
   overflow: auto;
-  height: 18vh;
+  height: 16vh;
   min-height: 175px;
   max-height: 300px;
 
@@ -169,6 +169,11 @@ a:hover { text-decoration: none; color:#000; }
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.searchbarPart {
+  width: 35vw;
+  margin: auto;
+  justify-content: center;
 }
 @media (max-width: 1000px) {
   .noteTextPart {
