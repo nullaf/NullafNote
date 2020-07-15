@@ -39,14 +39,7 @@ body,
 ;
 }
 
-.SignOutButton {
-  margin: 0 auto;
-  position: fixed !important;
-  top: 0;
-  right: 0;
-  height: 40px;
 
-}
 .noteLogo1 {
     margin: auto;
     width: 30vw;

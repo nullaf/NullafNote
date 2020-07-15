@@ -49,17 +49,6 @@ function App() {
     }
   };
 
-  const onClickSignOut = async (event) => {
-      try {
-          setLoginState(0);
-          await app
-              .auth()
-              .signOut();
-      }
-      catch(e) {
-          alert(e)
-      }
-  }
 
   if (loginState) {
     return (
@@ -67,15 +56,7 @@ function App() {
         <Helmet>
           <style>{"body {background-color: #eaeaea;"}</style>
         </Helmet>
-        <Button
-          variant="contained"
-          color="secondary"
-          className="SignOutButton"
-          onClick={onClickSignOut}
 
-        >
-          Sign Out
-        </Button>
         <Note keyValue={usernameState} />
 
       </div>

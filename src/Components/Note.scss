@@ -31,6 +31,7 @@ a:hover { text-decoration: none; color:#000; }
   justify-content: center;
 }
 .addNoteButton {
+  width: 46vw;
   justify-content: center;
   position: relative;
   margin: auto;
@@ -57,7 +58,7 @@ a:hover { text-decoration: none; color:#000; }
   overflow: auto;
 }
 .quill {
-  width: 50vw;
+  width: 100%;
   margin: 0 auto;
   background: #fff;
   box-shadow:
@@ -98,7 +99,6 @@ a:hover { text-decoration: none; color:#000; }
   flex-direction: column;
   flex-wrap: nowrap !important;
   width: 50vw;
-  min-width: 48vw;
 
 }
 .NoteTextGrid {
@@ -149,7 +149,7 @@ a:hover { text-decoration: none; color:#000; }
   overflow: auto;
 }
 .rightHeader {
-  margin: 0;
+  margin-right: auto;
   padding: 10px;
   display: flex;
   overflow: hidden;
@@ -213,6 +213,9 @@ a:hover { text-decoration: none; color:#000; }
 ;
 }
 @media (max-width: 1000px) {
+  .rightHeader {
+    width: 97%;
+  }
   .searchbarPart {
     width: 70vw;
 
@@ -227,7 +230,7 @@ a:hover { text-decoration: none; color:#000; }
 
   }
   .quill {
-    width: 98vw;
+    width: 100%;
   }
   .editQuill {
     width: 100%;
@@ -265,24 +268,22 @@ a:hover { text-decoration: none; color:#000; }
   .addNoteButton {
 
     margin: auto;
-    width: 100vw;
+    width: 90vw;
     padding: 10px;
 
   }
-  .rightHeader {
-    display: flex;
-    max-width: 98vw;
-    overflow: hidden;
-  }
+
 
 }
 @media (max-width: 550px) {
+  .rightHeader {
+    width: 95%;
+  }
+
   .noteTextPart {
     max-width: 36vw;
   }
-  .quill {
-    width: 100vw;
-  }
+
   .textFieldPart {
     grid-template-columns: 1fr;
 
