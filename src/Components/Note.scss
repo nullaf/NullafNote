@@ -4,22 +4,27 @@ body,
 #app > div {
   height: 100vh;
 }
-a { text-decoration: none; color:#0000EE; }
-a:visited { text-decoration: none; color:#0000EE; }
-a:hover { text-decoration: none; color:#000; }
-
+a {
+  text-decoration: none;
+  color: #0000ee;
+}
+a:visited {
+  text-decoration: none;
+  color: #0000ee;
+}
+a:hover {
+  text-decoration: none;
+  color: #000;
+}
 
 .Note {
-
   display: flex;
   flex-wrap: nowrap !important;
   background: #eee;
   height: 100%;
-
 }
 .textFieldPart {
   width: 100%;
-
 }
 
 .moreIcon {
@@ -31,7 +36,7 @@ a:hover { text-decoration: none; color:#000; }
   justify-content: center;
 }
 .addNoteButton {
-  width: 46vw;
+  width: 50vw;
   justify-content: center;
   position: relative;
   margin: auto;
@@ -42,7 +47,6 @@ a:hover { text-decoration: none; color:#000; }
   grid-gap: 2vh;
   justify-content: center;
   overflow: auto;
-
 }
 .saveChanges {
   margin: auto;
@@ -50,7 +54,7 @@ a:hover { text-decoration: none; color:#000; }
   justify-content: flex-end;
 }
 .addPart {
-  background: #E3E3E3;
+  background: #e3e3e3;
   min-width: 550px;
   height: 100%;
   width: 50vw;
@@ -61,28 +65,20 @@ a:hover { text-decoration: none; color:#000; }
   width: 100%;
   margin: 0 auto;
   background: #fff;
-  box-shadow:
-          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-          0 12.5px 10px rgba(0, 0, 0, 0.06),
-          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-          0 100px 80px rgba(0, 0, 0, 0.12)
-;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 .editQuill {
   padding: 15px;
   width: 100%;
   background: #fff;
 
-  box-shadow:
-          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-          0 12.5px 10px rgba(0, 0, 0, 0.06),
-          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-          0 100px 80px rgba(0, 0, 0, 0.12)
-;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 .header {
   box-sizing: content-box;
@@ -99,10 +95,8 @@ a:hover { text-decoration: none; color:#000; }
   flex-direction: column;
   flex-wrap: nowrap !important;
   width: 50vw;
-
 }
 .NoteTextGrid {
-
   min-width: 250px;
   word-wrap: break-word;
   max-width: 600px;
@@ -112,18 +106,58 @@ a:hover { text-decoration: none; color:#000; }
   min-height: 175px;
   max-height: 300px;
 
-  background-image: linear-gradient(135deg, rgba(186, 186, 186, 0.03) 0%, rgba(186, 186, 186, 0.03) 10%,rgba(133, 133, 133, 0.03) 10%, rgba(133, 133, 133, 0.03) 14%,rgba(38, 38, 38, 0.03) 14%, rgba(38, 38, 38, 0.03) 17%,rgba(93, 93, 93, 0.03) 17%, rgba(93, 93, 93, 0.03) 25%,rgba(80, 80, 80, 0.03) 25%, rgba(80, 80, 80, 0.03) 45%,rgba(239, 239, 239, 0.03) 45%, rgba(239, 239, 239, 0.03) 100%),linear-gradient(135deg, rgba(236, 236, 236, 0.03) 0%, rgba(236, 236, 236, 0.03) 47%,rgba(182, 182, 182, 0.03) 47%, rgba(182, 182, 182, 0.03) 63%,rgba(223, 223, 223, 0.03) 63%, rgba(223, 223, 223, 0.03) 81%,rgba(86, 86, 86, 0.03) 81%, rgba(86, 86, 86, 0.03) 89%,rgba(23, 23, 23, 0.03) 89%, rgba(23, 23, 23, 0.03) 90%,rgba(226, 226, 226, 0.03) 90%, rgba(226, 226, 226, 0.03) 100%),linear-gradient(45deg, rgba(52, 52, 52, 0.03) 0%, rgba(52, 52, 52, 0.03) 31%,rgba(246, 246, 246, 0.03) 31%, rgba(246, 246, 246, 0.03) 63%,rgba(188, 188, 188, 0.03) 63%, rgba(188, 188, 188, 0.03) 71%,rgba(15, 15, 15, 0.03) 71%, rgba(15, 15, 15, 0.03) 87%,rgba(127, 127, 127, 0.03) 87%, rgba(127, 127, 127, 0.03) 93%,rgba(234, 234, 234, 0.03) 93%, rgba(234, 234, 234, 0.03) 100%),linear-gradient(90deg, #ffffff,#ffffff);
+  background-image: linear-gradient(
+      135deg,
+      rgba(186, 186, 186, 0.03) 0%,
+      rgba(186, 186, 186, 0.03) 10%,
+      rgba(133, 133, 133, 0.03) 10%,
+      rgba(133, 133, 133, 0.03) 14%,
+      rgba(38, 38, 38, 0.03) 14%,
+      rgba(38, 38, 38, 0.03) 17%,
+      rgba(93, 93, 93, 0.03) 17%,
+      rgba(93, 93, 93, 0.03) 25%,
+      rgba(80, 80, 80, 0.03) 25%,
+      rgba(80, 80, 80, 0.03) 45%,
+      rgba(239, 239, 239, 0.03) 45%,
+      rgba(239, 239, 239, 0.03) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(236, 236, 236, 0.03) 0%,
+      rgba(236, 236, 236, 0.03) 47%,
+      rgba(182, 182, 182, 0.03) 47%,
+      rgba(182, 182, 182, 0.03) 63%,
+      rgba(223, 223, 223, 0.03) 63%,
+      rgba(223, 223, 223, 0.03) 81%,
+      rgba(86, 86, 86, 0.03) 81%,
+      rgba(86, 86, 86, 0.03) 89%,
+      rgba(23, 23, 23, 0.03) 89%,
+      rgba(23, 23, 23, 0.03) 90%,
+      rgba(226, 226, 226, 0.03) 90%,
+      rgba(226, 226, 226, 0.03) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(52, 52, 52, 0.03) 0%,
+      rgba(52, 52, 52, 0.03) 31%,
+      rgba(246, 246, 246, 0.03) 31%,
+      rgba(246, 246, 246, 0.03) 63%,
+      rgba(188, 188, 188, 0.03) 63%,
+      rgba(188, 188, 188, 0.03) 71%,
+      rgba(15, 15, 15, 0.03) 71%,
+      rgba(15, 15, 15, 0.03) 87%,
+      rgba(127, 127, 127, 0.03) 87%,
+      rgba(127, 127, 127, 0.03) 93%,
+      rgba(234, 234, 234, 0.03) 93%,
+      rgba(234, 234, 234, 0.03) 100%
+    ),
+    linear-gradient(90deg, #ffffff, #ffffff);
 
   margin-top: 2vh;
-  box-shadow:
-          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-          0 12.5px 10px rgba(0, 0, 0, 0.06),
-          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-          0 100px 80px rgba(0, 0, 0, 0.12)
-;
-
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 .NoteText {
   word-wrap: break-word;
@@ -144,7 +178,52 @@ a:hover { text-decoration: none; color:#000; }
   justify-content: center;
   width: 60vw;
   height: 50vw;
-  background-image: linear-gradient(135deg, rgba(186, 186, 186, 0.03) 0%, rgba(186, 186, 186, 0.03) 10%,rgba(133, 133, 133, 0.03) 10%, rgba(133, 133, 133, 0.03) 14%,rgba(38, 38, 38, 0.03) 14%, rgba(38, 38, 38, 0.03) 17%,rgba(93, 93, 93, 0.03) 17%, rgba(93, 93, 93, 0.03) 25%,rgba(80, 80, 80, 0.03) 25%, rgba(80, 80, 80, 0.03) 45%,rgba(239, 239, 239, 0.03) 45%, rgba(239, 239, 239, 0.03) 100%),linear-gradient(135deg, rgba(236, 236, 236, 0.03) 0%, rgba(236, 236, 236, 0.03) 47%,rgba(182, 182, 182, 0.03) 47%, rgba(182, 182, 182, 0.03) 63%,rgba(223, 223, 223, 0.03) 63%, rgba(223, 223, 223, 0.03) 81%,rgba(86, 86, 86, 0.03) 81%, rgba(86, 86, 86, 0.03) 89%,rgba(23, 23, 23, 0.03) 89%, rgba(23, 23, 23, 0.03) 90%,rgba(226, 226, 226, 0.03) 90%, rgba(226, 226, 226, 0.03) 100%),linear-gradient(45deg, rgba(52, 52, 52, 0.03) 0%, rgba(52, 52, 52, 0.03) 31%,rgba(246, 246, 246, 0.03) 31%, rgba(246, 246, 246, 0.03) 63%,rgba(188, 188, 188, 0.03) 63%, rgba(188, 188, 188, 0.03) 71%,rgba(15, 15, 15, 0.03) 71%, rgba(15, 15, 15, 0.03) 87%,rgba(127, 127, 127, 0.03) 87%, rgba(127, 127, 127, 0.03) 93%,rgba(234, 234, 234, 0.03) 93%, rgba(234, 234, 234, 0.03) 100%),linear-gradient(90deg, #ffffff,#ffffff);
+  background-image: linear-gradient(
+      135deg,
+      rgba(186, 186, 186, 0.03) 0%,
+      rgba(186, 186, 186, 0.03) 10%,
+      rgba(133, 133, 133, 0.03) 10%,
+      rgba(133, 133, 133, 0.03) 14%,
+      rgba(38, 38, 38, 0.03) 14%,
+      rgba(38, 38, 38, 0.03) 17%,
+      rgba(93, 93, 93, 0.03) 17%,
+      rgba(93, 93, 93, 0.03) 25%,
+      rgba(80, 80, 80, 0.03) 25%,
+      rgba(80, 80, 80, 0.03) 45%,
+      rgba(239, 239, 239, 0.03) 45%,
+      rgba(239, 239, 239, 0.03) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(236, 236, 236, 0.03) 0%,
+      rgba(236, 236, 236, 0.03) 47%,
+      rgba(182, 182, 182, 0.03) 47%,
+      rgba(182, 182, 182, 0.03) 63%,
+      rgba(223, 223, 223, 0.03) 63%,
+      rgba(223, 223, 223, 0.03) 81%,
+      rgba(86, 86, 86, 0.03) 81%,
+      rgba(86, 86, 86, 0.03) 89%,
+      rgba(23, 23, 23, 0.03) 89%,
+      rgba(23, 23, 23, 0.03) 90%,
+      rgba(226, 226, 226, 0.03) 90%,
+      rgba(226, 226, 226, 0.03) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(52, 52, 52, 0.03) 0%,
+      rgba(52, 52, 52, 0.03) 31%,
+      rgba(246, 246, 246, 0.03) 31%,
+      rgba(246, 246, 246, 0.03) 63%,
+      rgba(188, 188, 188, 0.03) 63%,
+      rgba(188, 188, 188, 0.03) 71%,
+      rgba(15, 15, 15, 0.03) 71%,
+      rgba(15, 15, 15, 0.03) 87%,
+      rgba(127, 127, 127, 0.03) 87%,
+      rgba(127, 127, 127, 0.03) 93%,
+      rgba(234, 234, 234, 0.03) 93%,
+      rgba(234, 234, 234, 0.03) 100%
+    ),
+    linear-gradient(90deg, #ffffff, #ffffff);
   padding: 15px;
   overflow: auto;
 }
@@ -156,18 +235,14 @@ a:hover { text-decoration: none; color:#000; }
   background: #f50057;
   color: white;
   width: 100%;
-  box-shadow:
-          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-          0 12.5px 10px rgba(0, 0, 0, 0.06),
-          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-          0 100px 80px rgba(0, 0, 0, 0.12)
-;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 .divIcons {
-    top: 0;
-    margin-top: 0;
+  top: 0;
+  margin-top: 0;
 }
 .iconsAndText {
   display: flex;
@@ -182,7 +257,7 @@ a:hover { text-decoration: none; color:#000; }
 .keyPart {
   Button {
     margin-left: 15px;
-    width: 120px ;
+    width: 120px;
     height: 40px;
   }
   .donePart {
@@ -203,14 +278,10 @@ a:hover { text-decoration: none; color:#000; }
   flex-direction: row;
   padding: 15px;
   background: #fff;
-  box-shadow:
-          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-          0 12.5px 10px rgba(0, 0, 0, 0.06),
-          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-          0 100px 80px rgba(0, 0, 0, 0.12)
-;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 @media (max-width: 1000px) {
   .rightHeader {
@@ -218,7 +289,6 @@ a:hover { text-decoration: none; color:#000; }
   }
   .searchbarPart {
     width: 70vw;
-
   }
   .noteTextPart {
     max-width: 18vw;
@@ -227,7 +297,6 @@ a:hover { text-decoration: none; color:#000; }
     padding: 15px;
     height: 90vh;
     width: 75vw;
-
   }
   .quill {
     width: 100%;
@@ -238,14 +307,10 @@ a:hover { text-decoration: none; color:#000; }
     margin: auto;
     justify-content: center;
     background: #fff;
-    box-shadow:
-            0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-            0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-            0 12.5px 10px rgba(0, 0, 0, 0.06),
-            0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-            0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-            0 100px 80px rgba(0, 0, 0, 0.12)
-  ;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
   }
   .rightPart {
     width: 100vw;
@@ -259,21 +324,18 @@ a:hover { text-decoration: none; color:#000; }
     padding: 10px;
     margin: auto;
   }
-  .noteTextGrid{
+  .noteTextGrid {
     max-width: 45vw;
     width: 45vw;
     border: none;
     margin: auto;
   }
   .addNoteButton {
-
     margin: auto;
     width: 90vw;
     padding: 10px;
-
+    transition: all 400ms ease-out;
   }
-
-
 }
 @media (max-width: 550px) {
   .rightHeader {
@@ -286,14 +348,12 @@ a:hover { text-decoration: none; color:#000; }
 
   .textFieldPart {
     grid-template-columns: 1fr;
-
   }
   .addPart {
     width: 100vw;
     min-width: 100px;
     margin: auto;
     justify-content: center;
-
   }
   .NoteTextGrid {
     max-width: 95vw;

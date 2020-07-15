@@ -1,6 +1,5 @@
 .App {
   height: 100vh;
-
 }
 html,
 body,
@@ -10,7 +9,23 @@ body,
 }
 .Login {
   height: 100vh;
-    background-image: radial-gradient(circle at top left, rgb(245,0,87) 0%, rgb(245,0,87) 2%,rgb(202, 202, 202) 2%, rgb(202, 202, 202) 23%,rgb(245,0,87) 23%, rgb(245,0,87) 55%,rgb(217, 217, 217) 55%, rgb(217, 217, 217) 80%,rgb(245,0,87) 80%, rgb(245,0,87) 86%,rgb(231, 231, 231) 86%, rgb(231, 231, 231) 96%,rgb(245,0,87) 96%, rgb(245,0,87) 100%);
+  background-image: radial-gradient(
+    circle at top left,
+    rgb(245, 0, 87) 0%,
+    rgb(245, 0, 87) 2%,
+    rgb(202, 202, 202) 2%,
+    rgb(202, 202, 202) 23%,
+    rgb(245, 0, 87) 23%,
+    rgb(245, 0, 87) 55%,
+    rgb(217, 217, 217) 55%,
+    rgb(217, 217, 217) 80%,
+    rgb(245, 0, 87) 80%,
+    rgb(245, 0, 87) 86%,
+    rgb(231, 231, 231) 86%,
+    rgb(231, 231, 231) 96%,
+    rgb(245, 0, 87) 96%,
+    rgb(245, 0, 87) 100%
+  );
 }
 .LoginPart {
   min-height: 350px;
@@ -29,64 +44,55 @@ body,
   background: #eaeaea;
   padding: 4vh 4vw;
   border-radius: 20px;
-    box-shadow:
-            0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-            0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-            0 12.5px 10px rgba(0, 0, 0, 0.06),
-            0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-            0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-            0 100px 80px rgba(0, 0, 0, 0.12)
-;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
-
 .noteLogo1 {
-    margin: auto;
-    width: 30vw;
-    height: 25vh;
-    min-width: 200px;
-    min-height: 125px;
-    max-height: 500px;
-    max-height: 360px;
+  margin: auto;
+  width: 30vw;
+  height: 25vh;
+  min-width: 200px;
+  min-height: 125px;
+  max-height: 500px;
+  max-height: 360px;
 }
 
 .card1 {
-    right: 5vw;
-    bottom: 5vh;
-    position: absolute;
-    min-width: 25ch;
-    min-height: 25ch;
-    width: 28vw;
-    height: 28vw;
-    background-image: url("./Images/noteimg2.svg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    will-change: transform;
+  right: 5vw;
+  bottom: 5vh;
+  position: absolute;
+  min-width: 25ch;
+  min-height: 25ch;
+  width: 28vw;
+  height: 28vw;
+  background-image: url("./Images/noteimg2.svg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  will-change: transform;
 }
+
 @media (max-width: 1000px) {
-    .LoginPart {
-        height: 55vh;
-        transition: all 400ms ease-out;
-    }
+  .LoginPart {
+    height: 55vh;
+    transition: all 400ms ease-out;
+  }
 
-     .noteLogo1 {
-         height: 20vh;
-         transition: all 400ms ease-out;
+  .noteLogo1 {
+    height: 20vh;
+    transition: all 400ms ease-out;
+  }
 
-     }
-
-    .welcomeText {
-        font-size: 40px !important;
-        transition: font-size 400ms ease-out;
-
-
-    }
+  .welcomeText {
+    font-size: 40px !important;
+    transition: font-size 400ms ease-out;
+  }
 }
 @media (max-width: 600px) {
-    .card1 {
-        display: none;
-
-    }
+  .card1 {
+    display: none;
+  }
 }
-

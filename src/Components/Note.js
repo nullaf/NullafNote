@@ -32,7 +32,6 @@ function Note(props) {
   let maxNumber = 0;
 
   useEffect(() => {
-
     const uid = firebase.auth().currentUser.uid;
     firebase.firestore().doc(`notes/${uid}`).set({
       string: "sth",
@@ -43,16 +42,13 @@ function Note(props) {
       .doc(uid)
       .collection("userNotes")
       .onSnapshot((snapshot) => {
-
         const newData = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setHeaders([]);
         newData.forEach((val) => {
-
           setHeaders((headers) => [
-
             { id: val.id, message: val.message, mainMessage: val.mainMessage },
             ...headers,
           ]);
@@ -61,8 +57,8 @@ function Note(props) {
   }, [keyDataState]);
 
   const addHeader = () => {
-    for(let i=0; i<headers.length; i++) {
-      if(headers[i].id > maxNumber) {
+    for (let i = 0; i < headers.length; i++) {
+      if (headers[i].id > maxNumber) {
         maxNumber = headers[i].id;
       }
     }

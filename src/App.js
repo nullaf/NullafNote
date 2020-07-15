@@ -9,17 +9,21 @@ import Grid from "@material-ui/core/Grid";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Note from "./Components/Note";
-import {ReactComponent as NoteLogo} from './Images/noteimg1.svg';
-import { useSpring, animated } from 'react-spring';
-
+import { ReactComponent as NoteLogo } from "./Images/noteimg1.svg";
+import { useSpring, animated } from "react-spring";
 
 function App() {
-  const calc = (x, y) => [x - window.innerWidth / 2, y - window.innerHeight / 2]
-  const trans1 = (x, y) => `translate3d(${x / 20}px,${y / 20}px,0)`
-  const [props, set] = useSpring(() => ({ xy: [0, 0], config: { mass: 10, tension: 550, friction: 140 } }))
+  const calc = (x, y) => [
+    x - window.innerWidth / 2,
+    y - window.innerHeight / 2,
+  ];
+  const trans1 = (x, y) => `translate3d(${x / 20}px,${y / 20}px,0)`;
+  const [props, set] = useSpring(() => ({
+    xy: [0, 0],
+    config: { mass: 10, tension: 550, friction: 140 },
+  }));
   const [loginState, setLoginState] = useState(0);
   const [usernameState, setUsernameState] = useState("");
-
 
   const keyPress = (event) => {
     if (event.keyCode === 13) {
@@ -49,7 +53,6 @@ function App() {
     }
   };
 
-
   if (loginState) {
     return (
       <div className="App">
@@ -58,23 +61,19 @@ function App() {
         </Helmet>
 
         <Note keyValue={usernameState} />
-
       </div>
     );
   } else {
     return (
       <div className="Login">
-
-
         <Helmet>
           <style>{"body {background-color: #1d1e22;"}</style>
         </Helmet>
 
-
         <div className="LoginPart">
-            <div>
-                <NoteLogo className="noteLogo1"/>
-            </div>
+          <div>
+            <NoteLogo className="noteLogo1" />
+          </div>
 
           <Grid
             container
@@ -82,15 +81,9 @@ function App() {
             justify="center"
             alignItems="center"
           >
-
-            <Typography
-              color="secondary"
-              variant="h3"
-              className="welcomeText"
-            >
+            <Typography color="secondary" variant="h3" className="welcomeText">
               Welcome
             </Typography>
-
 
             <TextField
               color="secondary"
@@ -120,18 +113,21 @@ function App() {
               color="secondary"
               type="submit"
               onClick={onSubmitSignUp}
-              disabled={!(/^\S+$/g.test(usernameState))}
+              disabled={!/^\S+$/g.test(usernameState)}
             >
               Sign In
             </Button>
           </Grid>
-
         </div>
-          <div className="container" onMouseMove={({clientX: x, clientY: y}) => set({xy: calc(x, y)})}>
-              <animated.div className="card1" style={{transform: props.xy.interpolate(trans1)}}/>
-          </div>
-
-
+        <div
+          className="container"
+          onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}
+        >
+          <animated.div
+            className="card1"
+            style={{ transform: props.xy.interpolate(trans1) }}
+          />
+        </div>
       </div>
     );
   }
