@@ -10,7 +10,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Note from "./Components/Note";
 import {ReactComponent as NoteLogo} from './Images/noteimg1.svg';
-import { useSpring, animated } from 'react-spring'
+import { useSpring, animated } from 'react-spring';
 
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
   const [props, set] = useSpring(() => ({ xy: [0, 0], config: { mass: 10, tension: 550, friction: 140 } }))
   const [loginState, setLoginState] = useState(0);
   const [usernameState, setUsernameState] = useState("");
+
 
   const keyPress = (event) => {
     if (event.keyCode === 13) {
@@ -31,6 +32,7 @@ function App() {
       await app
         .auth()
         .signInWithEmailAndPassword(usernameState + "@notenfapp.com", "123456");
+
       setLoginState(1);
     } catch (error) {
       try {
@@ -74,16 +76,18 @@ function App() {
         >
           Sign Out
         </Button>
-        <Note />
+        <Note keyValue={usernameState} />
+
       </div>
     );
   } else {
     return (
       <div className="Login">
+
+
         <Helmet>
           <style>{"body {background-color: #1d1e22;"}</style>
         </Helmet>
-
 
 
         <div className="LoginPart">
@@ -114,7 +118,7 @@ function App() {
               autoFocus
               required
               variant="outlined"
-              label="Username"
+              label="Key"
               value={usernameState}
               type="text"
               onKeyDown={keyPress}
@@ -135,7 +139,7 @@ function App() {
               color="secondary"
               type="submit"
               onClick={onSubmitSignUp}
-              disabled={usernameState === ""}
+              disabled={!(/^\S+$/g.test(usernameState))}
             >
               Sign In
             </Button>

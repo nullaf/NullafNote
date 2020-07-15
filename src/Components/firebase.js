@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import "firebase/firestore"
 import "@firebase/auth";
 
+// eslint-disable-next-line
 const app = firebase.initializeApp({
     apiKey: "AIzaSyCSB1oX8X2HAghK7kOyktlQRFerEqJyO-4",
     authDomain: "note-nf.firebaseapp.com",
@@ -13,6 +14,6 @@ const app = firebase.initializeApp({
     measurementId: "G-QVLHX5G3QX"
 });
 
-export const firestore = firebase.firestore();
-export default app;
+export default firebase
+
 

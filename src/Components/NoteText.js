@@ -16,6 +16,9 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import htmlToDraft from 'html-to-draftjs';
+import Button from "@material-ui/core/Button";
+import firebase from "./firebase";
+
 
 function NoteText(props) {
   const [header, setHeaderState] = useState(0);
@@ -23,9 +26,12 @@ function NoteText(props) {
   const [openEdit, setOpenEdit] = useState(false);
   const [headerTextMain, setHeaderTextMain] = useState(props.message);
   const [mainText, setMainText] = useState(props.mainMessage);
+  const [changedMainText , setChangedMain] = useState(props.mainMessage);
+  const [changedHeaderText , setChangedHeader] = useState(props.message)
+
 
   const onEditorStateChange = editorState => {
-    setMainText(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+    setChangedMain(draftToHtml(convertToRaw(editorState.getCurrentContent())))
     return setEditor(editorState)
   }
   const blocksFromHtml = htmlToDraft(props.mainMessage);
@@ -40,7 +46,10 @@ function NoteText(props) {
   // eslint-disable-next-line
   }, [props.message, props.mainMessage]);
 
+  const onDeleteNote = () => {
+    props.delete(props.id);
 
+  }
 
   const handleOpen = () => {
     setOpen(true);
@@ -58,6 +67,27 @@ function NoteText(props) {
     setOpenEdit(false);
   };
 
+  const onClickSaveChanges = () => {
+    const uid = firebase.auth().currentUser.uid;
+    setMainText(changedMainText);
+    setHeaderTextMain(changedHeaderText);
+    const queryData = firebase
+        .firestore()
+        .collection("notes")
+        .doc(uid)
+        .collection("userNotes")
+        .where("id", "==", props.id);
+    queryData.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        doc.ref.update({
+          id: props.id,
+          message: changedHeaderText,
+          mainMessage: changedMainText,
+        })
+      });
+    });
+
+  }
   return (
     <div className="NoteText">
       <div className="NoteTextGrid">
@@ -76,9 +106,7 @@ function NoteText(props) {
               <ZoomOutMapIcon color="secondary" />
             </IconButton>
             <IconButton
-              onClick={() => {
-                props.delete(props.id);
-              }}
+              onClick={onDeleteNote}
             >
               <DeleteIcon color="secondary" />
             </IconButton>
@@ -136,11 +164,9 @@ function NoteText(props) {
                       variant="outlined"
                       color="secondary"
                       fullWidth
-                      value={headerTextMain}
+                      value={changedHeaderText}
                       onChange={(e) => {
-                        if (headerTextMain.length < 30) {
-                          setHeaderTextMain(e.target.value);
-                        }
+                        setChangedHeader(e.target.value);
                       }}
                       onKeyDown={(e) => {
                         if (e.keyCode === 13) {
@@ -160,7 +186,7 @@ function NoteText(props) {
                       variant="h3"
 
                     >
-                      {headerTextMain}
+                      {changedHeaderText}
                     </Typography>
                   </div>
                 )}
@@ -179,7 +205,9 @@ function NoteText(props) {
 
                       }}
                   />
-
+                  <div className="saveChanges">
+                  <Button color="secondary" variant="contained" onClick={onClickSaveChanges}>Save Changes</Button>
+                  </div>
                 </div>
               </div>
             </Fade>

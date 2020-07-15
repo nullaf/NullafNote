@@ -33,16 +33,20 @@ a:hover { text-decoration: none; color:#000; }
 .addNoteButton {
   justify-content: center;
   position: relative;
-  margin-left: auto;
+  margin: auto;
 }
 .textFieldPart {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1vw;
+  grid-gap: 2vh;
   justify-content: center;
   overflow: auto;
 
-
+}
+.saveChanges {
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
 }
 .addPart {
   background: #E3E3E3;
@@ -174,6 +178,39 @@ a:hover { text-decoration: none; color:#000; }
   width: 35vw;
   margin: auto;
   justify-content: center;
+}
+.keyPart {
+  Button {
+    margin-left: 15px;
+    width: 120px ;
+    height: 40px;
+  }
+  .donePart {
+    display: flex;
+    flex-direction: row;
+  }
+  .changePart {
+    display: flex;
+    flex-direction: row;
+  }
+
+  margin-top: 10px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  background: #fff;
+  box-shadow:
+          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+          0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+          0 100px 80px rgba(0, 0, 0, 0.12)
+;
 }
 @media (max-width: 1000px) {
   .searchbarPart {
