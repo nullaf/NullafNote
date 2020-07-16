@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "@firebase/auth";
+import "firebase/storage"
 
 // eslint-disable-next-line
 const app = firebase.initializeApp({

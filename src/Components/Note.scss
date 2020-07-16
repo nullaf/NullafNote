@@ -4,6 +4,7 @@ body,
 #app > div {
   height: 100vh;
 }
+
 a {
   text-decoration: none;
   color: #0000ee;
@@ -43,12 +44,48 @@ a:hover {
   margin-right: auto;
   margin-top: 10px;
 }
-.textFieldPart {
+.filesPart {
+  padding: 10px;
+  margin-top: 2vh;
+  grid-template-columns: 2fr 2fr;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2vh;
   justify-content: center;
-  overflow: auto;
+  text-align: center;
+  min-height: 20vh;
+  .File {
+    overflow: hidden;
+    justify-content: center;
+    text-align: center;
+    min-width: 200px;
+    width: 20vw;
+    max-width: 600px;
+    word-wrap: break-word;
+    height: 8vh;
+    min-height: 50px;
+    max-height: 300px;
+    background: #fff;
+    margin: auto;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  }
+
+}
+.textNotesPart {
+  display: grid;
+  grid-template-columns: repeat(2 , 1fr);
+  grid-gap: 1vh;
+  justify-content: center;
+}
+.filesHeader {
+  justify-content: center;
+  text-align: center;
+}
+.notesHeader {
+  justify-content: center;
+  text-align: center;
 }
 .saveChanges {
   margin: auto;
@@ -64,7 +101,7 @@ a:hover {
   overflow: auto;
 }
 .quill {
-  padding: 15px;
+  padding: 30px;
   width: 100%;
   a {
     span {
@@ -107,7 +144,26 @@ a:hover {
   flex-direction: column;
   flex-wrap: nowrap !important;
   width: 50vw;
+
 }
+.addFile {
+  width: 60%;
+  text-align: center;
+  padding: 30px;
+  padding-top: 10px;
+  margin-top: 10px;
+  background: #fff;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+  margin-left: auto;
+  margin-right: auto;
+}
+.progressbarPart {
+  margin: auto;
+}
+
 .NoteTextGrid {
   min-width: 250px;
   word-wrap: break-word;
@@ -119,7 +175,7 @@ a:hover {
   max-height: 300px;
   background: #fff;
 
-  margin-top: 2vh;
+  margin-top: 1vh;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
@@ -205,6 +261,17 @@ a:hover {
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
 @media (max-width: 1000px) {
+  .filesPart {
+    .File {
+      width: 40vw;
+    }
+  }
+  body {
+    overflow: scroll;
+  }
+  .addFile {
+    width: 100%;
+  }
   .rightHeader {
     width: 97%;
   }
@@ -213,6 +280,7 @@ a:hover {
   }
   .noteTextPart {
     max-width: 18vw;
+    overflow: visible;
   }
   .messageBodyStyle {
     padding: 15px;
@@ -240,6 +308,7 @@ a:hover {
     flex-direction: column;
   }
   .addPart {
+    overflow: visible;
     width: 100vw;
     border-left: none;
     padding: 10px;
@@ -264,6 +333,7 @@ a:hover {
   }
 
   .noteTextPart {
+
     max-width: 36vw;
   }
 

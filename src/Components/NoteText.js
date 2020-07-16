@@ -70,13 +70,12 @@ function NoteText(props) {
   };
 
   const onClickSaveChanges = () => {
-    const uid = firebase.auth().currentUser.uid;
     setMainText(changedMainText);
     setHeaderTextMain(changedHeaderText);
     const queryData = firebase
       .firestore()
-      .collection("notes")
-      .doc(uid)
+      .collection("keys")
+      .doc(props.keyState)
       .collection("userNotes")
       .where("id", "==", props.id);
     queryData.get().then(function (querySnapshot) {
@@ -188,25 +187,25 @@ function NoteText(props) {
               )}
               <div className="editQuill">
                 <Editor
-                    wrapperClassName="demo-wrapper"
-                    editorClassName="demo-editor"
-                    editorState={editorState}
-                    onEditorStateChange={onEditorStateChange}
-                    toolbar={{
-                      options: [
-                        "inline",
-                        "fontSize",
-                        "list",
-                        "textAlign",
-                        "link",
-                        "colorPicker",
-                        "history",
-                      ],
-                      inline: { inDropdown: true },
-                      list: { inDropdown: true },
-                      textAlign: { inDropdown: true },
-                      link: { inDropdown: true },
-                    }}
+                  wrapperClassName="demo-wrapper"
+                  editorClassName="demo-editor"
+                  editorState={editorState}
+                  onEditorStateChange={onEditorStateChange}
+                  toolbar={{
+                    options: [
+                      "inline",
+                      "fontSize",
+                      "list",
+                      "textAlign",
+                      "link",
+                      "colorPicker",
+                      "history",
+                    ],
+                    inline: { inDropdown: true },
+                    list: { inDropdown: true },
+                    textAlign: { inDropdown: true },
+                    link: { inDropdown: true },
+                  }}
                 />
                 <div className="saveChanges">
                   <Button

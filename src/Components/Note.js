@@ -16,11 +16,15 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import firebase from "./firebase";
 import app from "./firebase";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import AttachFileIcon from "@material-ui/icons/AttachFile";
+import File from "./File";
 
 function Note(props) {
   const [headerState, setHeader] = useState(0);
   const [headerText, setHeaderText] = useState("Header");
-
   const [text, setText] = useState("");
   const [editorState, setEditor] = useState(EditorState.createEmpty());
   const [searchState, setSearchState] = useState("");
@@ -31,15 +35,16 @@ function Note(props) {
   const [dataFetchState, setDataFetchState] = useState(1);
   let maxNumber = 0;
 
+  let deleteAudio = new Audio("/remove.wav");
+
   useEffect(() => {
-    const uid = firebase.auth().currentUser.uid;
-    firebase.firestore().doc(`notes/${uid}`).set({
+    firebase.firestore().doc(`keys/${keyState}`).set({
       string: "sth",
     });
     firebase
       .firestore()
-      .collection("notes")
-      .doc(uid)
+      .collection("keys")
+      .doc(keyState)
       .collection("userNotes")
       .onSnapshot((snapshot) => {
         const newData = snapshot.docs.map((doc) => ({
@@ -54,6 +59,7 @@ function Note(props) {
           ]);
         });
       });
+    // eslint-disable-next-line
   }, [keyDataState]);
 
   const addHeader = () => {
@@ -63,11 +69,10 @@ function Note(props) {
       }
     }
 
-    const uid = firebase.auth().currentUser.uid;
     firebase
       .firestore()
-      .collection("notes")
-      .doc(uid)
+      .collection("keys")
+      .doc(keyState)
       .collection("userNotes")
       .add({
         id: maxNumber + 1,
@@ -81,12 +86,12 @@ function Note(props) {
   };
 
   const deleteNote = (id) => {
-    const uid = firebase.auth().currentUser.uid;
+    deleteAudio.play();
     setHeaders(headers.filter((note) => note.id !== id));
     const queryData = firebase
       .firestore()
-      .collection("notes")
-      .doc(uid)
+      .collection("keys")
+      .doc(keyState)
       .collection("userNotes")
       .where("id", "==", id);
     queryData.get().then(function (querySnapshot) {
@@ -106,6 +111,7 @@ function Note(props) {
       setDataFetchState(1);
       setKeyState("");
       setChangeState(1);
+      setFiles([]);
       setHeaders([]);
       await app.auth().signOut();
     } catch (e) {
@@ -121,6 +127,7 @@ function Note(props) {
         .signInWithEmailAndPassword(keyState + "@notenfapp.com", "123456");
       setDataFetchState(1);
       setKeyData(keyDataState + 1);
+      setFiles([]);
       setHeaders([]);
       setChangeState(0);
     } catch (error) {
@@ -131,6 +138,7 @@ function Note(props) {
             keyState + "@notenfapp.com",
             "123456"
           );
+        setFiles([]);
         setHeaders([]);
         setChangeState(0);
       } catch (err) {
@@ -144,6 +152,73 @@ function Note(props) {
       onChangeKey();
     }
   };
+
+  const [upProgress, setUpProgress] = useState(0);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [files, setFiles] = useState([]);
+  const [inputText, setInputText] = useState(null);
+  let audio = new Audio("/success.mp3");
+
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(keyState + "/" + file.name);
+
+    const uploadTask = fileRef.put(file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+
+        setUpProgress(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      () => {
+        audio.play();
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          firebase.firestore().collection(`keys/${keyState}/userFiles`).add({
+            fileName: file.name,
+            downloadUrl: downloadURL,
+          });
+        });
+        setUpProgress(0);
+        setSuccessMessage("You uploaded your file successfully!");
+        setInputText(Date.now());
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 2500);
+      }
+    );
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("keys")
+      .doc(keyState)
+      .collection("userFiles")
+      .onSnapshot((snapshot) => {
+        const newFileData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setFiles([]);
+        newFileData.forEach((val) => {
+          setFiles((files) => [
+            { fileName: val.fileName, downloadUrl: val.downloadUrl },
+            ...files,
+          ]);
+        });
+      });
+    // eslint-disable-next-line
+  }, [keyDataState]);
 
   return (
     <div className="Note">
@@ -205,19 +280,71 @@ function Note(props) {
               link: { inDropdown: true },
             }}
           />
-
-
         </div>
         <div className="addNoteButton">
           <Button
-              onClick={() => addHeader()}
-              variant="contained"
-              color="secondary"
-              fullWidth
-              startIcon={<AddIcon />}
+            onClick={() => addHeader()}
+            variant="contained"
+            color="secondary"
+            fullWidth
+            startIcon={<AddIcon />}
           >
             Add Note
           </Button>
+        </div>
+        <div className="addFile">
+          <Typography variant="h4" color="secondary">
+            Attach File
+          </Typography>
+          <FormControl onSubmit={onSubmit} color="secondary">
+            <Input
+              id="my-input"
+              type="file"
+              color="secondary"
+              key={inputText}
+              onChange={onFileChange}
+            />
+
+            <Button
+              startIcon={<AttachFileIcon color="secondary" />}
+              variant="outlined"
+              color="secondary"
+              style={{ marginTop: 10 }}
+            >
+              Submit
+            </Button>
+          </FormControl>
+          {upProgress === 0 ? null : (
+            <div
+              className="progressbarPart"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 10,
+              }}
+            >
+              <LinearProgress
+                variant="determinate"
+                color="secondary"
+                value={upProgress}
+                style={{ width: "90%" }}
+              />
+              <Typography color="secondary" style={{ marginLeft: 5 }}>
+                {upProgress}%
+              </Typography>
+            </div>
+          )}
+        </div>
+        <div
+          className="addFile"
+          style={{ padding: 0, marginTop: 0, marginBottom: 10 }}
+        >
+          {successMessage !== "" ? (
+            <Typography style={{ backgroundColor: "lightgreen" }}>
+              {successMessage}
+            </Typography>
+          ) : null}
         </div>
         <div className="keyPart">
           {changeState ? (
@@ -297,30 +424,69 @@ function Note(props) {
             />
           </div>
           <div className="textFieldPart">
-            {searchState === ""
-              ? headers.map((note) => (
-                  <NoteText
-                    mainMessage={note.mainMessage}
-                    message={note.message}
-                    id={note.id}
-                    delete={(id) => deleteNote(id)}
-                  />
-                ))
-              : headers.map((note) =>
-                  note.message
-                    .toLowerCase()
-                    .search(searchState.toLowerCase()) !== -1 ||
-                  note.mainMessage
-                    .toLowerCase()
-                    .search(searchState.toLowerCase()) !== -1 ? (
+            {files.length !== 0 ? (
+              <div className="filesHeader">
+                <Typography variant="h3" color="secondary">
+                  Files
+                </Typography>{" "}
+              </div>
+            ) : null}
+            <div className="filesPart" style={files.length === 0 ? {display:"none"} : null}>
+              {searchState === ""
+                ? files.map((file) => (
+                    <File
+                      fileName={file.fileName}
+                      downloadUrl={file.downloadUrl}
+                      keyState={keyState}
+                    />
+                  ))
+                : files.map((file) =>
+                    file.fileName
+                      .toLowerCase()
+                      .search(searchState.toLowerCase()) !== -1 ? (
+                      <File
+                        fileName={file.fileName}
+                        downloadUrl={file.downloadUrl}
+                        keyState={keyState}
+                      />
+                    ) : null
+                  )}
+            </div>
+            {headers.length !== 0 ? (
+                <div className="notesHeader">
+                  <Typography variant="h3" color="secondary">
+                    Notes
+                  </Typography>
+                </div>
+            ) : null}
+            <div className="textNotesPart">
+              {searchState === ""
+                ? headers.map((note) => (
                     <NoteText
+                      keyState={keyState}
                       mainMessage={note.mainMessage}
                       message={note.message}
                       id={note.id}
                       delete={(id) => deleteNote(id)}
                     />
-                  ) : null
-                )}
+                  ))
+                : headers.map((note) =>
+                    note.message
+                      .toLowerCase()
+                      .search(searchState.toLowerCase()) !== -1 ||
+                    note.mainMessage
+                      .toLowerCase()
+                      .search(searchState.toLowerCase()) !== -1 ? (
+                      <NoteText
+                        keyState={keyState}
+                        mainMessage={note.mainMessage}
+                        message={note.message}
+                        id={note.id}
+                        delete={(id) => deleteNote(id)}
+                      />
+                    ) : null
+                  )}
+            </div>
           </div>
         </Grid>
       </div>
