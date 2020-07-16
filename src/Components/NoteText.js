@@ -188,26 +188,25 @@ function NoteText(props) {
               )}
               <div className="editQuill">
                 <Editor
-                  wrapperClassName="demo-wrapper"
-                  editorClassName="demo-editor"
-                  editorState={editorState}
-                  onEditorStateChange={onEditorStateChange}
-                  toolbar={{
-                    options: [
-                      "inline",
-                      "blockType",
-                      "fontSize",
-                      "fontFamily",
-                      "list",
-                      "textAlign",
-                      "link",
-                      "history",
-                    ],
-                    inline: { inDropdown: true },
-                    list: { inDropdown: true },
-                    textAlign: { inDropdown: true },
-                    link: { inDropdown: true },
-                  }}
+                    wrapperClassName="demo-wrapper"
+                    editorClassName="demo-editor"
+                    editorState={editorState}
+                    onEditorStateChange={onEditorStateChange}
+                    toolbar={{
+                      options: [
+                        "inline",
+                        "fontSize",
+                        "list",
+                        "textAlign",
+                        "link",
+                        "colorPicker",
+                        "history",
+                      ],
+                      inline: { inDropdown: true },
+                      list: { inDropdown: true },
+                      textAlign: { inDropdown: true },
+                      link: { inDropdown: true },
+                    }}
                 />
                 <div className="saveChanges">
                   <Button

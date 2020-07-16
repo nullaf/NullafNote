@@ -182,6 +182,7 @@ function Note(props) {
             </div>
           )}
         </div>
+
         <div className="quill">
           <Editor
             wrapperClassName="demo-wrapper"
@@ -191,12 +192,11 @@ function Note(props) {
             toolbar={{
               options: [
                 "inline",
-                "blockType",
                 "fontSize",
-                "fontFamily",
                 "list",
                 "textAlign",
                 "link",
+                "colorPicker",
                 "history",
               ],
               inline: { inDropdown: true },
@@ -206,17 +206,18 @@ function Note(props) {
             }}
           />
 
-          <div className="addNoteButton">
-            <Button
+
+        </div>
+        <div className="addNoteButton">
+          <Button
               onClick={() => addHeader()}
               variant="contained"
               color="secondary"
               fullWidth
               startIcon={<AddIcon />}
-            >
-              Add Note
-            </Button>
-          </div>
+          >
+            Add Note
+          </Button>
         </div>
         <div className="keyPart">
           {changeState ? (
