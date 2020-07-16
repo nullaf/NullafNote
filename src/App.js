@@ -12,6 +12,7 @@ import Note from "./Components/Note";
 import { ReactComponent as NoteLogo } from "./Images/noteimg1.svg";
 import { useSpring, animated } from "react-spring";
 
+
 function App() {
   const calc = (x, y) => [
     x - window.innerWidth / 2,
