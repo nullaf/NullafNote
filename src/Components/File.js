@@ -9,6 +9,7 @@ function File(props) {
   let deleteAudio = new Audio("/remove.wav");
 
   const onDeleteFile = () => {
+    props.delete(props.downloadUrl);
     const queryData = firebase
       .firestore()
       .collection("keys")
@@ -35,9 +36,11 @@ function File(props) {
   };
   return (
     <div className="File">
+        <div className="fileNamePart">
       <Link href={props.downloadUrl} target="_blank" rel="noopener noreferrer">
         {props.fileName}
       </Link>
+        </div>
       <IconButton onClick={onDeleteFile}>
         <DeleteIcon color="secondary" />
       </IconButton>

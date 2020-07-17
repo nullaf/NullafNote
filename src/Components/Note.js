@@ -35,6 +35,7 @@ function Note(props) {
   const [dataFetchState, setDataFetchState] = useState(1);
   let maxNumber = 0;
 
+
   let deleteAudio = new Audio("/remove.wav");
 
   useEffect(() => {
@@ -220,6 +221,9 @@ function Note(props) {
     // eslint-disable-next-line
   }, [keyDataState]);
 
+  const deleteFile = (downloadUrl) => {
+    setFiles(files.filter((file) => file.downloadUrl !== downloadUrl));
+  }
   return (
     <div className="Note">
       <div className="rightPart">
@@ -438,6 +442,7 @@ function Note(props) {
                       fileName={file.fileName}
                       downloadUrl={file.downloadUrl}
                       keyState={keyState}
+                      delete={(downloadUrl) => deleteFile(downloadUrl)}
                     />
                   ))
                 : files.map((file) =>
@@ -448,8 +453,9 @@ function Note(props) {
                         fileName={file.fileName}
                         downloadUrl={file.downloadUrl}
                         keyState={keyState}
+                        delete={(downloadUrl) => deleteFile(downloadUrl)}
                       />
-                    ) : null
+                    ): null
                   )}
             </div>
             {headers.length !== 0 ? (

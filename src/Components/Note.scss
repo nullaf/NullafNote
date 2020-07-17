@@ -5,18 +5,7 @@ body,
   height: 100vh;
 }
 
-a {
-  text-decoration: none;
-  color: #0000ee;
-}
-a:visited {
-  text-decoration: none;
-  color: #0000ee;
-}
-a:hover {
-  text-decoration: none;
-  color: #000;
-}
+
 
 .Note {
   display: flex;
@@ -65,7 +54,8 @@ a:hover {
     min-height: 50px;
     max-height: 300px;
     background: #fff;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
@@ -82,10 +72,12 @@ a:hover {
 .filesHeader {
   justify-content: center;
   text-align: center;
+  width: 100%;
 }
 .notesHeader {
   justify-content: center;
   text-align: center;
+  width: 100%;
 }
 .saveChanges {
   margin: auto;
@@ -262,8 +254,11 @@ a:hover {
 }
 @media (max-width: 1000px) {
   .filesPart {
+    width: 90vw;
+    margin: auto;
     .File {
-      width: 40vw;
+       width: 42vw;
+      margin: auto;
     }
   }
   body {
@@ -288,7 +283,7 @@ a:hover {
     width: 75vw;
   }
   .quill {
-    width: 100%;
+    width: 98%;
   }
   .editQuill {
     width: 100%;
@@ -315,11 +310,12 @@ a:hover {
     margin: auto;
   }
   .noteTextGrid {
-    max-width: 45vw;
-    width: 45vw;
+    max-width: 40vw;
+    width: 40vw;
     border: none;
     margin: auto;
   }
+
   .addNoteButton {
     margin: auto;
     width: 90vw;
@@ -328,6 +324,12 @@ a:hover {
   }
 }
 @media (max-width: 550px) {
+  .filesPart {
+    grid-template-columns: 1fr;
+    .File {
+      width: 90%;
+    }
+  }
   .rightHeader {
     width: 95%;
   }
@@ -337,7 +339,7 @@ a:hover {
     max-width: 36vw;
   }
 
-  .textFieldPart {
+  .textNotesPart {
     grid-template-columns: 1fr;
   }
   .addPart {
