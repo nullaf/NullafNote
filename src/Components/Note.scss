@@ -3,9 +3,8 @@ body,
 #app,
 #app > div {
   height: 100vh;
+  box-sizing: border-box; !important
 }
-
-
 
 .Note {
   display: flex;
@@ -283,7 +282,7 @@ body,
     width: 75vw;
   }
   .quill {
-    width: 98%;
+    width: 100%;
   }
   .editQuill {
     width: 100%;
@@ -298,6 +297,7 @@ body,
   }
   .rightPart {
     width: 100vw;
+    max-width:100%;
   }
   .Note {
     flex-direction: column;
@@ -305,6 +305,7 @@ body,
   .addPart {
     overflow: visible;
     width: 100vw;
+    max-width:100%;
     border-left: none;
     padding: 10px;
     margin: auto;
@@ -344,6 +345,7 @@ body,
   }
   .addPart {
     width: 100vw;
+    max-width:100%;
     min-width: 100px;
     margin: auto;
     justify-content: center;
